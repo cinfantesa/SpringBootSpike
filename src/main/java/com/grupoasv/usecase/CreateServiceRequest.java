@@ -1,5 +1,6 @@
 package com.grupoasv.usecase;
 
+import com.grupoasv.domain.Client;
 import com.grupoasv.domain.ServiceRequest;
 import com.grupoasv.repository.ClientRepository;
 import com.grupoasv.repository.ServiceRepository;
@@ -9,8 +10,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CreateServiceRequest {
-    private ServiceRequestRepository serviceRequestRepository;
-    private ClientRepository clientRepository;
+    private final ServiceRequestRepository serviceRequestRepository;
+    private final ClientRepository clientRepository;
     private final ServiceRepository serviceRepository;
 
     @Autowired
@@ -21,11 +22,22 @@ public class CreateServiceRequest {
     }
 
     public void execute(ServiceRequest request) {
-        if (!clientRepository.exists(request.getClient().getSip())){
-            clientRepository.save(request.getClient());
-        }
+        CreateUserWhenNotExists(request.getClient());
+        CreateServiceRequest(request);
+        CreateServiceInstance(request);
+    }
 
-        serviceRequestRepository.save(request);
+    private void CreateServiceInstance(ServiceRequest request) {
         serviceRepository.save(request.generateService());
+    }
+
+    private void CreateServiceRequest(ServiceRequest request) {
+        serviceRequestRepository.save(request);
+    }
+
+    private void CreateUserWhenNotExists(Client client) {
+        if (!clientRepository.exists(client.getSip())){
+            clientRepository.save(client);
+        }
     }
 }
