@@ -2,6 +2,7 @@ package com.grupoasv.usecase;
 
 import com.grupoasv.domain.ServiceRequest;
 import com.grupoasv.repository.ClientRepository;
+import com.grupoasv.repository.ServiceRepository;
 import com.grupoasv.repository.ServiceRequestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,11 +11,13 @@ import org.springframework.stereotype.Service;
 public class CreateServiceRequest {
     private ServiceRequestRepository serviceRequestRepository;
     private ClientRepository clientRepository;
+    private final ServiceRepository serviceRepository;
 
     @Autowired
-    public CreateServiceRequest(ServiceRequestRepository serviceRequestRepository, ClientRepository clientRepository) {
+    public CreateServiceRequest(ServiceRequestRepository serviceRequestRepository, ClientRepository clientRepository, ServiceRepository serviceRepository) {
         this.serviceRequestRepository = serviceRequestRepository;
         this.clientRepository = clientRepository;
+        this.serviceRepository = serviceRepository;
     }
 
     public void execute(ServiceRequest request) {
@@ -23,5 +26,6 @@ public class CreateServiceRequest {
         }
 
         serviceRequestRepository.save(request);
+        serviceRepository.save(request.generateService());
     }
 }

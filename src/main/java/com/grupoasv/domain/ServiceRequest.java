@@ -24,4 +24,8 @@ public class ServiceRequest {
     private Client client;
     private String type;
     private Date requestedDate;
+
+    public Service generateService() {
+        return new Service(id, this, client, type, requestedDate);
+    }
 }
