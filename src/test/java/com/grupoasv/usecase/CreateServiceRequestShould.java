@@ -13,8 +13,6 @@ import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-//@RunWith(SpringRunner.class)
-//@SpringBootTest
 public class CreateServiceRequestShould {
     ServiceRequestRepository serviceRequestRepository = Mockito.spy(ServiceRequestRepository.class);
     ClientRepository clientRepository = Mockito.mock(ClientRepository.class);
