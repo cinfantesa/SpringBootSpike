@@ -7,9 +7,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-/**
- * Created by cinfantes on 30/11/16.
- */
 @Entity
 @Data
 @AllArgsConstructor
