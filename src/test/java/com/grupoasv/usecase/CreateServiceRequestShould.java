@@ -16,8 +16,11 @@ import static org.mockito.Mockito.when;
 //@RunWith(SpringRunner.class)
 //@SpringBootTest
 public class CreateServiceRequestShould {
-    private ServiceRequestRepository serviceRequestRepository = Mockito.spy(ServiceRequestRepository.class);
-    private ClientRepository clientRepository = Mockito.mock(ClientRepository.class);
+    ServiceRequestRepository serviceRequestRepository = Mockito.spy(ServiceRequestRepository.class);
+    ClientRepository clientRepository = Mockito.mock(ClientRepository.class);
+
+    CreateServiceRequest createServiceRequest = new CreateServiceRequest(serviceRequestRepository, clientRepository);
+
 
     @Test
     public void create_service_request_and_when_user_not_exists() throws Exception {
@@ -25,7 +28,6 @@ public class CreateServiceRequestShould {
 
         when(clientRepository.exists(request.getClient().getSip())).thenReturn(false);
 
-        CreateServiceRequest createServiceRequest = new CreateServiceRequest(serviceRequestRepository, clientRepository);
         createServiceRequest.execute(request);
 
         verify(serviceRequestRepository).save(request);
@@ -38,7 +40,6 @@ public class CreateServiceRequestShould {
 
         when(clientRepository.exists(request.getClient().getSip())).thenReturn(true);
 
-        CreateServiceRequest createServiceRequest = new CreateServiceRequest(serviceRequestRepository, clientRepository);
         createServiceRequest.execute(request);
 
         verify(serviceRequestRepository).save(request);
