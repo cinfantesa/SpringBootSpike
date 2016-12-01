@@ -20,12 +20,8 @@ public class CreateServiceRequestShould {
     private ClientRepository clientRepository = Mockito.mock(ClientRepository.class);
 
     @Test
-    public void create_service_request_user_no_exists() throws Exception {
-        ServiceRequest request = new ServiceRequest(
-                1L,
-                new Client(1,"Juan de Dios","666777888"),
-                "Cancer",
-                new Date());
+    public void create_service_request_and_when_user_not_exists() throws Exception {
+        ServiceRequest request = aServiceRequest();
 
         when(clientRepository.exists(request.getClient().getSip())).thenReturn(false);
 
@@ -37,12 +33,8 @@ public class CreateServiceRequestShould {
     }
 
     @Test
-    public void create_service_request_user_exists() throws Exception {
-        ServiceRequest request = new ServiceRequest(
-                1L,
-                new Client(1,"Juan de Dios","666777888"),
-                "Cancer",
-                new Date());
+    public void create_service_request_and_not_creating_users_when_user_already_exists() throws Exception {
+        ServiceRequest request = aServiceRequest();
 
         when(clientRepository.exists(request.getClient().getSip())).thenReturn(true);
 
@@ -54,4 +46,11 @@ public class CreateServiceRequestShould {
     }
 
 
+    private ServiceRequest aServiceRequest() {
+        return new ServiceRequest(
+                1L,
+                new Client(1,"Juan de Dios","666777888"),
+                "Cancer",
+                new Date());
+    }
 }
