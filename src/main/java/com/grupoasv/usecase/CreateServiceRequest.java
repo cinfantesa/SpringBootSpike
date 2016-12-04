@@ -7,6 +7,7 @@ import com.grupoasv.repository.ServiceRepository;
 import com.grupoasv.repository.ServiceRequestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class CreateServiceRequest {
@@ -21,6 +22,7 @@ public class CreateServiceRequest {
         this.serviceRepository = serviceRepository;
     }
 
+    @Transactional
     public void execute(ServiceRequest request) {
         createUserWhenNotExists(request.getClient());
         createServiceRequest(request);
