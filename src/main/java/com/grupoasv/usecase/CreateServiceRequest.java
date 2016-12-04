@@ -22,20 +22,20 @@ public class CreateServiceRequest {
     }
 
     public void execute(ServiceRequest request) {
-        CreateUserWhenNotExists(request.getClient());
-        CreateServiceRequest(request);
-        CreateServiceInstance(request);
+        createUserWhenNotExists(request.getClient());
+        createServiceRequest(request);
+        createServiceInstance(request);
     }
 
-    private void CreateServiceInstance(ServiceRequest request) {
+    private void createServiceInstance(ServiceRequest request) {
         serviceRepository.save(request.generateService());
     }
 
-    private void CreateServiceRequest(ServiceRequest request) {
+    private void createServiceRequest(ServiceRequest request) {
         serviceRequestRepository.save(request);
     }
 
-    private void CreateUserWhenNotExists(Client client) {
+    private void createUserWhenNotExists(Client client) {
         if (!clientRepository.exists(client.getSip())){
             clientRepository.save(client);
         }

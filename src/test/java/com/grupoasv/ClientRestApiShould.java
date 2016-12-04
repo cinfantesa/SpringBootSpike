@@ -33,7 +33,7 @@ public class ClientRestApiShould {
     }
 
     @Test
-    public void get_a_service() {
+    public void get_a_client() {
         clientRepository.save(new Client(SIP, CLIENT_NAME, CLIENT_PHONE));
 
         when()
