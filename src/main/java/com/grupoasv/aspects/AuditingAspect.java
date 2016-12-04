@@ -1,4 +1,4 @@
-package com.grupoasv.auditing;
+package com.grupoasv.aspects;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
