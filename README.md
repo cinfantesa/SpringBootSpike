@@ -148,7 +148,7 @@ Otro elemento interesante en este test es la configuración del entorno para uti
 
 # Aspectos (Auditoria)
 
-La auditoría es un ejemplo tipico de [cross-cutting concern](https://en.wikipedia.org/wiki/Cross-cutting_concern), es decir, un concepto transversal a toda la aplicación. Estos elementos en spring se pueden implementar de una forma muy elegante haciendo uso del soporte de spring para programación orientada a aspectos (AOP).
+Como parte del spike había que implementar un mecanismo de auditoria para logar cuando un usuario accede a un servicio, la auditoría es un ejemplo tipico de [cross-cutting concern](https://en.wikipedia.org/wiki/Cross-cutting_concern), es decir, un concepto transversal a toda la aplicación. Estos elementos en spring se pueden implementar de una forma muy elegante haciendo uso del soporte de spring para programación orientada a aspectos (AOP), existen otras posibilidades de implementación, vamos a mostrar una posible solución con spring-aop para mostrar la versatilidad de esta solución.
 
 El objetivo es implementar la auditoria de forma cohesiva dentro de un aspecto de auditoria en lugar de tener 
 llamadas a auditar repartidos por distintos lugares del código, vemos el ejemplo:
@@ -169,5 +169,3 @@ Con la anotación @AfterReturning estamos indicando que queremos que el método 
 
 De esta manera se podrían encapsular en este aspecto todas las operaciones de auditoria de la app configurando
 con que puntos de la aplicación queremos "enganchar" la auditoria. 
-
-Esto es sólo una posibilidad, la auditoria se podría implementar de muchas otras formas, pero este ejemplo creo que ilustara bien las potencia que ofrece spring aop para estos escenarios.
