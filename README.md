@@ -92,7 +92,7 @@ Teniendo en cuenta el dibujo anterior vamos a ver como mapean las clases creadas
 
 En esta arquitectura la clase CreateServiceRequest.java que representa el caso de uso para la creación de solicitudes de servicio es independiente del framework en gran médida lo que nos permitiría en el futuro reutilizar esta lógica de negocio o conservarla a pesar de que se cambié el framework utilizado.
 
-Graciás a esta indepedencia podemos escribir un verdadero test unitario para esta caso de uso, que no depende en ningún caso de spring [CreateServiceRequestShould](https://github.com/cinfantesa/SpringBootSpike/blob/master/src/test/java/com/grupoasv/usecase/CreateServiceRequestShould.java) , este tipo de tests que nos permiten testear nuestra lógica de negocio con independencia de la infraestura tienen grandes ventajas:
+Graciás a esta indepedencia podemos escribir un verdadero test unitario para esta caso de uso, que no depende en ningún caso de spring [CreateServiceRequestShould](https://github.com/cinfantesa/SpringBootSpike/blob/master/src/test/java/com/grupoasv/usecase/CreateServiceRequestShould.java) , este tipo de tests que nos permiten testear nuestra lógica de negocio con independencia de la infraestructura tienen grandes ventajas:
 
   - Se ejecutan muy rápido, miles de test en segundos.
   - Se ejecutan aisladamente, sin interdependencias, lo que permite ejecutarlos en cualquier orden o incluso
