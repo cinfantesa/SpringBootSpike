@@ -142,9 +142,9 @@ public class ClientRestApiShould {
 ``` 
 
 Este test al ejecutarse se encarga de levantar un servidor con spring boot y luego lanzar el test
-contra el servicio levantado. Se ha utilizado la librería [RestAssured](https://github.com/rest-assured/rest-assured) para crear unos test lo más legibles posible. 
+contra el servicio levantado. Se ha utilizado la librería [RestAssured](https://github.com/rest-assured/rest-assured) para hacer el test lo más legible posible.
 
-Otro elemento interesante en este test es la configuración del entorno para utilizar un "RANDOM_PORT", al no tener un puerto hardcoded spring buscará un libre, de modo que si no producirán errores si el puerto esta ocupado. Error muy habitual en entornos de IC con este tipo de tests (por ejemplo al ejecutar test de integración de varias ramas a la vez).
+Otro elemento interesante en este test es la configuración del entorno para utilizar un "RANDOM_PORT", al no tener un puerto "hardcoded" spring buscará uno libre para lanzar la aplicación de modo que no se producirán errores si el puerto esta ocupado por algún otro proceso en el momento de lanzar el test. Este error muy habitual en entornos de IC con este tipo de tests (por ejemplo al ejecutar test de integración de varias ramas a la vez).
 
 # Aspectos (Auditoria)
 
@@ -168,6 +168,6 @@ public class AuditingAspect {
 Con la anotación @AfterReturning estamos indicando que queremos que el método logServiceAccess se ejecute después de aquellos métodos que coincidan con la expresión indicada. En este caso el método findOne del repositorio de servicios.
 
 De esta manera se podrían encapsular en este aspecto todas las operaciones de auditoria de la app configurando
-en que puntos de la aplicación queremos "engancharla". 
+con que puntos de la aplicación queremos "enganchar" la auditoria. 
 
 Esto es sólo una posibilidad, la auditoria se podría implementar de muchas otras formas, pero este ejemplo creo que ilustara bien las potencia que ofrece spring aop para estos escenarios.
